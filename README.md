@@ -19,12 +19,13 @@ This project consists of two main parts: a backend developed using Laravel and a
 
 #### 2. Navigate to the Backend Directory:
 ```sh
-    composer install
+    cd backend
+
 ```
 
 #### 3. Install Dependencies:
 ```sh
-    cd Crawler/backend
+    composer install
 ```
 
 #### 4. Copy the .env.example file:
