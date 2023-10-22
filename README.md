@@ -55,7 +55,7 @@ Ensure MongoDB is running. In the .env file, modify the following settings to ma
 
 ## Frontend (Angular) Setup
 
-
+open new terminal window
 
 #### 1. Navigate to the Frontend Directory:
 ```sh
