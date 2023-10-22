@@ -1,0 +1,11 @@
+a {
+    color: #007BFF;        /* Color of the link */
+    text-decoration: none; /* Removes underline */
+    margin-left: 10px;     /* Spacing */
+  }
+  
+  a:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+
+  

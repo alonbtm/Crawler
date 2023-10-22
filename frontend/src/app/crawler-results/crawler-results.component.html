@@ -1,0 +1,75 @@
+<style>
+  table {
+      border-collapse: collapse;
+      width: calc(100% - 120px);  /* 20px for left and 20px for right */
+      margin-left: 60px;   /* Adjust this value as needed */
+      margin-right: 60px;  /* Adjust this value as needed */
+
+  }
+  .content-cell {
+      max-width: 400px;
+      word-wrap: break-word;
+      padding: 10px;
+  }
+
+  .toggle-link,
+  .expandable-row {
+      color: #007BFF;
+      cursor: pointer;
+      text-decoration: underline;
+  }
+
+  tr.child-row {
+      background-color: #f8f9fa; /* A light gray color */
+      padding-left: 30px; /* Indent child rows */
+  }
+
+  .expand-icon {
+      margin-right: 5px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+  }
+
+  tr.expanded .expand-icon {
+      transform: rotate(90deg); /* Rotate the arrow when the row is expanded */
+  }
+</style>
+
+  <table *ngIf="results.length">
+    <thead>
+      <tr>
+        <th>URL</th>
+        <th>Content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let result of results">
+        <!-- Parent rows -->
+        <tr *ngIf="!result.parent" (click)="result.expanded = !result.expanded" class="expandable-row" [class.expanded]="result.expanded">
+            <td>
+              <span class="expand-icon">→</span>
+              {{ result.url }}
+            </td>
+            <td class="content-cell">
+                <span *ngIf="result.showLess">{{ truncateContent(result.content, 100) }}...</span>
+                <span *ngIf="!result.showLess">{{ result.content }}</span>
+                <a class="toggle-link" (click)="toggleContent(result); $event.stopPropagation()">Show {{ result.showLess ? 'More' : 'Less' }}</a>
+            </td>
+        </tr>
+
+        <!-- Child rows (only displayed if the parent is expanded) -->
+        <ng-container *ngIf="result.expanded">
+            <ng-container *ngFor="let child of results">
+                <tr *ngIf="child.parent === result.url" class="child-row">
+                    <td>{{ child.url }}</td>
+                    <td class="content-cell">
+                        <span *ngIf="child.showLess">{{ truncateContent(child.content, 100) }}...</span>
+                        <span *ngIf="!child.showLess">{{ child.content }}</span>
+                        <a class="toggle-link" (click)="toggleContent(child); $event.stopPropagation()">Show {{ child.showLess ? 'More' : 'Less' }}</a>
+                    </td>
+                </tr>
+            </ng-container>
+        </ng-container>
+      </ng-container>
+    </tbody>
+  </table>

@@ -1,0 +1,24 @@
+<div class="container">
+  <form #form="ngForm" (ngSubmit)="submitForm()" class="form">
+      <div class="form-group">
+        <label for="url">URL:</label>
+        <input 
+          type="url" 
+          id="url" 
+          [(ngModel)]="url" 
+          name="url" 
+          required
+          pattern="https?://.+">
+      </div>
+      <div class="form-group">
+        <label for="depth">Depth:</label>
+        <input type="number" id="depth" [(ngModel)]="depth" name="depth" required>
+      </div>
+      <div class="button-group">
+        <button type="submit" [disabled]="!form.valid || isLoading">
+          <div *ngIf="!isLoading">Crawl</div>
+          <div class="spinner" *ngIf="isLoading"></div>
+        </button>
+      </div>
+  </form>
+</div>
