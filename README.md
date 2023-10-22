@@ -59,7 +59,7 @@ Ensure MongoDB is running. In the .env file, modify the following settings to ma
 
 #### 1. Navigate to the Frontend Directory:
 ```sh
-    cd Crawler/frontend
+    cd frontend
 ```
 #### 2. Install Dependencies:
 ```sh
