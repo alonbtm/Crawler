@@ -12,7 +12,14 @@
       </div>
       <div class="form-group">
         <label for="depth">Depth:</label>
-        <input type="number" id="depth" [(ngModel)]="depth" name="depth" required>
+        <input 
+          type="number" 
+          id="depth" 
+          [(ngModel)]="depth" 
+          name="depth" 
+          required 
+          min="1" 
+          step="1">
       </div>
       <div class="button-group">
         <button type="submit" [disabled]="!form.valid || isLoading">
